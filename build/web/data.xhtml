@@ -1,0 +1,102 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="head">
+        <style type="text/css">
+            .cars-datalist .text-column p:last-child{
+                color:#757575;
+            }
+
+            .cars-datalist .car-item {
+                padding: 8px 14px;
+            }
+
+            .cars-datalist .car-item img, .cars-datalist .car-item .car-details {
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 14px;
+            }
+
+            .cars-datalist .car-item button {
+                float: right;
+            }
+
+            .cars-datalist .ui-datalist-item:not(:last-child) {
+                border-bottom: 1px solid #dee4e9;
+            }
+
+            .cars-datalist ul {
+                margin: 0;
+                padding: 0;
+            }
+
+            .ui-car-display td:last-child {
+                font-weight: 700;
+            }
+
+            @media (max-width:640px) {
+                .cars-datalist .text-column {
+                    text-align: center;
+                }
+
+                .ui-tree {
+                    width: 100%;
+                }
+            }
+        </style>
+        <div class="ui-g-12">
+            <h:form>
+                <p:growl id="messages" showDetail="true" />
+
+                <h:panelGrid columnClasses="value">
+                    <p:schedule id="schedule" value="#{scheduleJava8View.eventModel}" widgetVar="myschedule" >
+
+                        <p:ajax event="dateSelect" listener="#{scheduleJava8View.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+                        <p:ajax event="eventSelect" listener="#{scheduleJava8View.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+                        <p:ajax event="eventMove" listener="#{scheduleJava8View.onEventMove}" update="messages" />
+                        <p:ajax event="eventResize" listener="#{scheduleJava8View.onEventResize}" update="messages" />
+
+                    </p:schedule>
+                </h:panelGrid>
+
+                <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
+                    <h:panelGrid id="eventDetails" columns="2">
+                        <p:outputLabel for="title" value="Nombre del Evento:" />
+                        <p:inputText id="title" value="#{scheduleJava8View.event.title}" required="true" />
+
+                        <p:outputLabel value="Descripción del Evento:" />
+                        <p:inputTextarea rows="6" cols="33" id="description" value="#{scheduleJava8View.event.description}" />
+
+                        <p:outputLabel for="from" value="Desde:" />
+                        <p:datePicker id="from" value="#{calendarioController.event.startDate}" pattern="dd/MM/yyyy" showTime="true" appendTo="@(body)"  />
+
+                        <p:outputLabel for="to" value="Hasta:" />
+                        <p:datePicker id="to" value="#{calendarioController.event.endDate}" pattern="dd/MM/yyyy" showTime="true" appendTo="@(body)" />
+                        
+                        <h:outputLabel for="multiple" value="Destinatarios:" />
+                        <p:selectCheckboxMenu id="multiple" value="#{checkBoxController.selectedCorreos}" label="Correos" multiple="true"
+                                              filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                            <p:ajax event="itemUnselect" listener="#{checkBoxController.onItemUnselect}" />
+                            <f:selectItems value="#{checkBoxController.correos}" />
+                        </p:selectCheckboxMenu>
+                        
+                        <p:inputText id="tagNuevo" value="#{perfilController.tagNuevo}" style="width: 400px; margin: 20px"/>
+
+                        <p:outputLabel for="allDay" value="All Day (see #1164):" />
+                        <h:selectBooleanCheckbox id="allDay" value="#{scheduleJava8View.event.allDay}" />
+
+
+                        <p:commandButton type="reset" value="Reset" />
+                        <p:commandButton id="addButton" value="Save" action="#{scheduleJava8View.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+                    </h:panelGrid>
+                </p:dialog>    
+            </h:form>
+        </div>
+
+
+    </ui:define>
+</ui:composition>
