@@ -29,31 +29,31 @@
                     </div>
                     <div class="ui-g-6 ui-sm-12 right-side">
                         <div class="ui-g-12 container">
-                            <h3>Welcome guest!</h3>
-                            <h2>Sign in to Manhattan Network</h2>
+                            <h3>Bienvenido al Proyecto de Componentes!</h3>
+                            <h2>Inicia Sesión en el Proyecto</h2>
                         </div>
                         <div class="ui-g-12">
-                            <p:outputLabel for="username" value="Username" />
+                            <p:outputLabel for="username" value="Usuario" />
                             <div class="input-wrapper">
-                                <p:inputText id="username" placeholder="Username" />
+                                <p:inputText id="username" placeholder="Usuario" value="#{loginController.usuario}"/>
                                 <i class="fa fa-user" />
                             </div>
                         </div>
                         <div class="ui-g-12">
-                            <p:outputLabel for="password" value="Password" />
+                            <p:outputLabel for="password" value="Contrasenha"/>
                             <div class="input-wrapper">
-                                <p:password id="password" placeholder="Password" feedback="false" />
+                                <p:password id="password" placeholder="Constraseña" feedback="false" value="#{loginController.contrasenha}"/>
                                 <i class="fa fa-lock" />
                             </div>
                         </div>
                         <div class="ui-g-12 button-container">
-                            <p:button outcome="/dashboard" value="Sign In" styleClass="green-btn raised-btn"/>
+                            <p:commandButton value="Ingresar" icon="fa fa-sign-in" action="#{loginController.iniciarSesion()}" styleClass="green-btn raised-btn rounded-btn" update="growl" />/>
                         </div>
                     </div>
                 </div>
             </div>
         </h:form>
-        <h:outputStylesheet name="css/layout-#{guestPreferences.theme}.css" library="manhattan-layout" />
+        <h:outputStylesheet name="css/layout-#{guestPreferences.theme}.css" library="manhattan-layout"/>
     </h:body>
 
 </html>

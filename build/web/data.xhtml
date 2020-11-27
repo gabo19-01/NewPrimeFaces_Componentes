@@ -49,12 +49,11 @@
             }
         </style>
         <div class="ui-g-12">
-            <h:form>
+            <h:form enctype="multipart/form-data">
                 <p:growl id="messages" showDetail="true" />
 
                 <h:panelGrid columnClasses="value">
                     <p:schedule id="schedule" value="#{scheduleJava8View.eventModel}" widgetVar="myschedule" >
-
                         <p:ajax event="dateSelect" listener="#{scheduleJava8View.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
                         <p:ajax event="eventSelect" listener="#{scheduleJava8View.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
                         <p:ajax event="eventMove" listener="#{scheduleJava8View.onEventMove}" update="messages" />
@@ -63,13 +62,18 @@
                     </p:schedule>
                 </h:panelGrid>
 
-                <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
+                <p:dialog widgetVar="eventDialog" header="Informacion a Enviar" showEffect="clip" hideEffect="clip" width="700">
+                    <!--
+                        Esta info debe venir autocompletada desde la pagina anterior 
+                        donde ya se realizo la compra. Aqui el cliente solo decide los dias 
+                        que quiere como recordatorio
+                    -->
                     <h:panelGrid id="eventDetails" columns="2">
-                        <p:outputLabel for="title" value="Nombre del Evento:" />
-                        <p:inputText id="title" value="#{scheduleJava8View.event.title}" required="true" />
+                        <p:outputLabel for="title" value="Nombre" />
+                        <p:inputText id="title" value="#{scheduleJava8View.event.title}" required="true" /> 
 
                         <p:outputLabel value="Descripción del Evento:" />
-                        <p:inputTextarea rows="6" cols="33" id="description" value="#{scheduleJava8View.event.description}" />
+                        <p:inputTextarea rows="6" cols="33" />
 
                         <p:outputLabel for="from" value="Desde:" />
                         <p:datePicker id="from" value="#{calendarioController.event.startDate}" pattern="dd/MM/yyyy" showTime="true" appendTo="@(body)"  />
@@ -84,14 +88,16 @@
                             <f:selectItems value="#{checkBoxController.correos}" />
                         </p:selectCheckboxMenu>
                         
-                        <p:inputText id="tagNuevo" value="#{perfilController.tagNuevo}" style="width: 400px; margin: 20px"/>
 
                         <p:outputLabel for="allDay" value="All Day (see #1164):" />
                         <h:selectBooleanCheckbox id="allDay" value="#{scheduleJava8View.event.allDay}" />
-
-
                         <p:commandButton type="reset" value="Reset" />
                         <p:commandButton id="addButton" value="Save" action="#{scheduleJava8View.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+                        
+                        Añadir archivo<br />
+                        
+                        <p:fileUpload value="#{FileUploadView.file}" mode="simple" skinSimple="true"/>
+                            <br />
                     </h:panelGrid>
                 </p:dialog>    
             </h:form>
