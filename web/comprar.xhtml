@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"> 
+    <ui:define name="title">Forms</ui:define>     
+    <ui:define name="content">    
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-lg-12">
+                <!-- Left Side -->
+                <div class="card card-w-title">
+                    <h1>Informacion</h1>
+                    <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank form-group">
+                        <p:inputText placeholder="Nombre Completo"/>
+                        <p:inputText placeholder="Correo"/>
+                        <p:inputText placeholder="Telefono"/>
+                    </p:panelGrid>
+                </div>
+                <div class="card card-w-title">
+                    <h1>Estilo</h1>
+                    <p:panelGrid columns="1" style="margin-bottom:10px" layout="grid" styleClass="form-group ui-panelgrid-blank">
+                        <p:selectOneMenu id="console" value="#{selectOneMenuView.console}" style="margin-bottom:10px;">
+                            <f:selectItem itemLabel="Selecione estilo de la Bicicleta" itemValue="" />
+                            <f:selectItem itemLabel="Estilo 1" itemValue="Xbox One" />
+                            <f:selectItem itemLabel="Estilo 2" itemValue="PS4" />
+                            <f:selectItem itemLabel="Estilo 3" itemValue="Wii U" />
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                </div> 
+                <div class="card card-w-title">
+                    <h1>Fecha de Entrega</h1>
+                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group" style="margin-top:10px">
+                        <p:spacer />
+                        <p:calendar id="inline"  mode="inline"/>
+                    </p:panelGrid>
+                </div>
+                <p:commandButton type="button" value="Finalizar Compra"/>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
