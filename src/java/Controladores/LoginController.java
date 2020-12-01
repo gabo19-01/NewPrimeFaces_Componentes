@@ -5,7 +5,6 @@
  */
 package Controladores;
 
-import Modelo.Usuario;
 import Servicios.LoginServicio;
 import java.io.IOException;
 import java.util.List;
@@ -14,6 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import entidades.Usuario;
 
 /**
  *
@@ -47,7 +47,7 @@ public class LoginController {
         boolean retorno = false;
         List<Usuario> usuarios = ls.allUsuarios();
         for (Usuario u : usuarios) {
-            if (u.getCorreo().equals(usuario) && u.getContrasenha().equals(contrasenha)) {
+            if (u.getCorreo().equals(usuario) && u.getContrasena().equals(contrasenha)) {
                 retorno = true;
             } else {
                 retorno = false;
