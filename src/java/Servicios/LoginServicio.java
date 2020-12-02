@@ -11,7 +11,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.*;
-import entidades.Usuario;
+import correo.Usuario;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +21,7 @@ import java.util.Set;
  */
 public class LoginServicio {
 
-    private List<entidades.Usuario> usuarios;
+    private List<correo.Usuario> usuarios;
 
     private static EntityManagerFactory entityManagerFactory = null;
     private static EntityManager em = null;
