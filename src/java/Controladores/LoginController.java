@@ -27,6 +27,7 @@ public class LoginController {
     private String usuario;
     private String contrasenha;
 
+    private Usuario usuarioLoggeado;
     public String getUsuario() {
         return usuario;
     }
@@ -42,6 +43,16 @@ public class LoginController {
     public void setContrasenha(String contrasenha) {
         this.contrasenha = contrasenha;
     }
+    
+    public Usuario getUsuarioLoggeado() {
+        return usuarioLoggeado;
+    }
+
+    public void setUsuarioLoggeado(Usuario usuarioLoggeado) {
+        this.usuarioLoggeado = usuarioLoggeado;
+    }
+    
+    
 
     public boolean verificar() {
         boolean retorno = false; 
@@ -49,6 +60,8 @@ public class LoginController {
         for (Usuario u : usuarios) {
             if (u.getCorreo().equals(usuario) && u.getContrasena().equals(contrasenha)) {
                 retorno = true;
+                this.usuarioLoggeado = u;
+                break;
             } else {
                 retorno = false;
             }
@@ -74,10 +87,11 @@ public class LoginController {
     public void iniciarSesion() {
         ls.startEntityManagerFactory();
         if (this.verificar()) {
-            this.redirect("Comprar.xhtml");
+            this.redirect("comprar.xhtml");
         } else {
             FacesContext.getCurrentInstance()
                     .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Usuario o password incorrectos"));
         }
     }
+
 }
