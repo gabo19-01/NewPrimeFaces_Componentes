@@ -44,7 +44,7 @@ public class LoginController {
     }
 
     public boolean verificar() {
-        boolean retorno = false;
+        boolean retorno = false; 
         List<Usuario> usuarios = ls.allUsuarios();
         for (Usuario u : usuarios) {
             if (u.getCorreo().equals(usuario) && u.getContrasena().equals(contrasenha)) {
@@ -72,6 +72,7 @@ public class LoginController {
     }
 
     public void iniciarSesion() {
+        ls.startEntityManagerFactory();
         if (this.verificar()) {
             this.redirect("Comprar.xhtml");
         } else {
