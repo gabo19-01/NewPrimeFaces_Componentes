@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-	<persistence-unit name="EmailComponente">
-		<class>facturacion.Categoria</class>
-		<class>facturacion.Cliente</class>
-		<class>facturacion.Compania</class>
-		<class>facturacion.Hardware</class>
-		<class>facturacion.Individuo</class>
-		<class>facturacion.Itemorden</class>
-		<class>facturacion.Manual</class>
-		<class>facturacion.Orden</class>
-		<class>facturacion.Producto</class>
-		<class>facturacion.Software</class>
-		<class>facturacion.Tipocliente</class>
-		<class>correo.Adjunto</class>
-		<class>correo.Alerta</class>
-		<class>correo.Departamento</class>
-		<class>correo.DocumentosEvento</class>
-		<class>correo.Usuario</class>
-		<class>correo.Evento</class>
-				
-		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/componentecorreos"/>
-			<property name="javax.persistence.jdbc.user" value="admin"/>
-			<property name="javax.persistence.jdbc.password" value="admin"/>
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-			<property name="hibernate.hbm2ddl.auto" value="create" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-		</properties>
-	</persistence-unit>
+  <persistence-unit name="EmailComponente">
+    <class>facturacion.Categoria</class>
+    <class>facturacion.Cliente</class>
+    <class>facturacion.Compania</class>
+    <class>facturacion.Hardware</class>
+    <class>facturacion.Individuo</class>
+    <class>facturacion.Itemorden</class>
+    <class>facturacion.Manual</class>
+    <class>facturacion.Orden</class>
+    <class>facturacion.Producto</class>
+    <class>facturacion.Software</class>
+    <class>facturacion.Tipocliente</class>
+    <class>correo.Adjunto</class>
+    <class>correo.Alerta</class>
+    <class>correo.Departamento</class>
+    <class>correo.DocumentosEvento</class>
+    <class>correo.Usuario</class>
+    <class>correo.Evento</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/componentecorreos"/>
+      <property name="javax.persistence.jdbc.user" value="admin"/>
+      <property name="javax.persistence.jdbc.password" value="admin"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="hibernate.hbm2ddl.auto" value="create"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+    </properties>
+  </persistence-unit>
 </persistence>
