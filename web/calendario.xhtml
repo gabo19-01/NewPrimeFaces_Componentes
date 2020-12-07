@@ -53,8 +53,7 @@
                 <p:growl id="messages" showDetail="true" />
 
                 <h:panelGrid columnClasses="value">
-                    <p:schedule id="schedule" value="#{scheduleJava8View.eventModel}" widgetVar="myschedule" >
-                        <-- Agregar los evento aqui^^-->
+                    <p:schedule id="schedule" value="#{calendarioController.eventModel}" widgetVar="myschedule" >                        
                         <p:ajax event="dateSelect" listener="#{scheduleJava8View.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
                         <p:ajax event="eventSelect" listener="#{scheduleJava8View.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
                         <p:ajax event="eventMove" listener="#{scheduleJava8View.onEventMove}" update="messages" />
