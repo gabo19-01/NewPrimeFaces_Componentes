@@ -93,10 +93,10 @@ public class LoginController {
                     .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Usuario o password incorrectos"));
         }
     }
-    public void redireccionCalendario(String pagina) {
+    public void redireccionCalendario() {
         this.redirect("data.xhtml");
     }
-    public void redireccionComprar(String pagina) {
+    public void redireccionComprar() {
         this.redirect("comprar.xhtml");
     }
 
