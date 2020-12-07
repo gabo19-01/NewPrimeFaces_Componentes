@@ -87,11 +87,17 @@ public class LoginController {
     public void iniciarSesion() {
         ls.startEntityManagerFactory();
         if (this.verificar()) {
-            this.redirect("comprar.xhtml");
+            this.redirect("inventario.xhtml");
         } else {
             FacesContext.getCurrentInstance()
                     .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Usuario o password incorrectos"));
         }
+    }
+    public void redireccionCalendario(String pagina) {
+        this.redirect("data.xhtml");
+    }
+    public void redireccionComprar(String pagina) {
+        this.redirect("comprar.xhtml");
     }
 
 }

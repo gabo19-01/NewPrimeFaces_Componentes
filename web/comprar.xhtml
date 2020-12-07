@@ -12,22 +12,23 @@
                 <div class="card card-w-title">
                     <h1>Informacion</h1>
                     <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank form-group">
-                        <p:inputText placeholder="Nombre Completo"/>
-                        <p:inputText placeholder="Correo"/>
-                        <p:inputText placeholder="Telefono"/>
+                        <h:outputLabel value="#{loginController.usuarioLoggeado.nombre}" />
+                        <h:outputLabel value="#{loginController.usuarioLoggeado.correo}" />
                     </p:panelGrid>
                 </div>
+<!--                Este bloque es por decoracion no es requerimiento-->
                 <div class="card card-w-title">
                     <h1>Estilo</h1>
                     <p:panelGrid columns="1" style="margin-bottom:10px" layout="grid" styleClass="form-group ui-panelgrid-blank">
                         <p:selectOneMenu id="console" value="#{selectOneMenuView.console}" style="margin-bottom:10px;">
                             <f:selectItem itemLabel="Selecione estilo de la Bicicleta" itemValue="" />
-                            <f:selectItem itemLabel="Estilo 1" itemValue="Xbox One" />
-                            <f:selectItem itemLabel="Estilo 2" itemValue="PS4" />
-                            <f:selectItem itemLabel="Estilo 3" itemValue="Wii U" />
+                            <f:selectItem itemLabel="Estilo 1" itemValue="Bicicleta 1" />
+                            <f:selectItem itemLabel="Estilo 2" itemValue="Bicicleta 2" />
+                            <f:selectItem itemLabel="Estilo 3" itemValue="Bicicleta 3" />
                         </p:selectOneMenu>
                     </p:panelGrid>
                 </div> 
+<!--                Este bloque es por decoracion no es requerimiento-->
                 <div class="card card-w-title">
                     <h1>Fecha de Entrega</h1>
                     <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group" style="margin-top:10px">
@@ -35,7 +36,7 @@
                         <p:calendar id="inline"  mode="inline"/>
                     </p:panelGrid>
                 </div>
-                <p:commandButton type="button" value="Finalizar Compra"/>
+                <p:commandButton type="button" value="Finalizar Compra" action="#{loginController.redireccionCalendario()}"/>
             </div>
         </div>
     </ui:define>
