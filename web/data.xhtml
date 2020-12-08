@@ -88,16 +88,16 @@
                             <f:selectItems value="#{checkBoxController.correos}" />
                         </p:selectCheckboxMenu>
                         
+                        <p:outputLabel value="Recordatorio:" />
+                        <p:selectOneMenu id="console" value="#{calendarioController.intervaloSeleccionado}">
+                            <f:selectItem value="#{calendarioController.intervalos}"/>
+                        </p:selectOneMenu>
 
                         <p:outputLabel for="allDay" value="All Day (see #1164):" />
                         <h:selectBooleanCheckbox id="allDay" value="#{scheduleJava8View.event.allDay}" />
                         <p:commandButton type="reset" value="Reset" />
                         <p:commandButton id="addButton" value="Save" action="#{scheduleJava8View.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
-                        
-                        Añadir archivo<br />
-                        
-                        <p:fileUpload value="#{FileUploadView.file}" mode="simple" skinSimple="true"/>
-                            <br />
+ 
                     </h:panelGrid>
                 </p:dialog>    
             </h:form>
