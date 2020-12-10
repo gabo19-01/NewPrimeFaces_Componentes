@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"> 
+    <ui:define name="title">Forms</ui:define>     
+    <ui:define name="content">    
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-lg-12">
+                <!-- Left Side -->
+                <div class="card card-w-title">
+                    <h1>Informacion</h1>
+                    <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank form-group">
+                        <p:inputText placeholder="Nombre" value="" style=" margin: 5px; font-weight: bold;"/>
+                        <p:inputText placeholder="Profesion" value="" style=" margin: 5px; font-weight: bold;"/>
+                        <p:inputText placeholder="Otra info" value="" style=" margin: 5px; font-weight: bold;"/>
+                        <p:inputText placeholder="mas cosas" value="" style=" margin: 5px; font-weight: bold;"/>
+                        <p:inputText placeholder="aun mas cosas" value="" style=" margin: 5px; font-weight: bold;"/>
+                        <p:inputText placeholder="aun mas mas cosas" value="" style=" margin: 5px; font-weight: bold;"/>
+                    </p:panelGrid>
+                </div>
+                
+                <p:commandButton value="Guardar"/>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
