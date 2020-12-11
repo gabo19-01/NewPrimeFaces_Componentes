@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"> 
+    <ui:define name="title">Forms</ui:define>     
+    <ui:define name="content">    
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-lg-12">
+                <!-- Left Side -->
+                <div class="card card-w-title">
+                    <h1>Productos y Recordatorios</h1>
+                    <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank form-group">
+                        <h:outputLabel value="#{loginController.usuarioLoggeado.nombre}" />
+                    </p:panelGrid>
+                </div>
+                <div class="ui-g-12 ui-lg-3 ui-xl-3">
+                    <p:graphicImage name="bici1.jpeg" library="bicicletas" class="bicicletas"/>
+                    <h:outputLabel value="Fecha De entrega" style="color:#0084b8; font-size: 20px" />
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

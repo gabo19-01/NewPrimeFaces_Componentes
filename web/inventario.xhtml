@@ -16,35 +16,18 @@
         <div class="ui-g dashboard">
             <div class="ui-g-12 ui-lg-3 ui-xl-3">
                 <p:graphicImage name="bici1.jpeg" library="bicicletas" class="bicicletas"/>
-                <p:commandButton  value="Comprar" action="#{loginController.redireccionComprar()}"/>
-            </div>
-            <div class="ui-g-12 ui-lg-3 ui-xl-3">
-                <p:graphicImage name="bici2.jpeg" library="bicicletas" class="bicicletas"/>
-                <p:commandButton  value="Comprar" action="#{loginController.redireccionComprar()}"/>
-            </div>
-            <div class="ui-g-12 ui-lg-3 ui-xl-3">
-                <p:graphicImage name="bici3.jpeg" library="bicicletas" class="bicicletas"/>
-                <p:commandButton  value="Comprar" action="#{loginController.redireccionComprar()}"/>
-            </div>
-            <div class="ui-g-12 ui-lg-3 ui-xl-3">
-                <p:graphicImage name="bici4.jpeg" library="bicicletas" class="bicicletas"/>
-                <p:commandButton  value="Comprar" action="#{loginController.redireccionComprar()}"/>
-            </div>
-            <div class="ui-g-12 ui-lg-3 ui-xl-3">
-                <p:graphicImage name="bici5.jpeg" library="bicicletas" class="bicicletas"/>
-                <p:commandButton  value="Comprar" action="#{loginController.redireccionComprar()}"/>
-            </div>
-            <div class="ui-g-12 ui-lg-3 ui-xl-3">
-                <p:graphicImage name="bici6.jpeg" library="bicicletas" class="bicicletas"/>
-                <p:commandButton  value="Comprar" action="#{loginController.redireccionComprar()}"/>
-            </div>
-            <div class="ui-g-12 ui-lg-3 ui-xl-3">
-                <p:graphicImage name="bici7.jpeg" library="bicicletas" class="bicicletas"/>
-                <p:commandButton  value="Comprar" action="#{loginController.redireccionComprar()}"/>
-            </div>
-            <div class="ui-g-12 ui-lg-3 ui-xl-3">
-                <p:graphicImage name="bici8.jpeg" library="bicicletas" class="bicicletas"/>
-                <p:commandButton  value="Comprar" action="#{loginController.redireccionComprar()}"/>
+                <p:commandButton  value="Mas informacion" type="button" onclick="PF('dlg').show()" style="width: 100%"/>
+                <p:dialog header="Login" widgetVar="dlg" resizable="false" draggable="false" styleClass="dialogDemo" responsive="true" hideEffect="scale">
+                    <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-4,ui-grid-col-8">
+                        <h:outputLabel value="Precio" />
+                        <br></br>
+                        <h:outputLabel value="descripcion" />
+                        <br></br>
+                        <f:facet name="footer">
+                            <p:commandButton value="Comprar" action="#{loginController.redireccionComprar()}" styleClass="green-btn"/>
+                        </f:facet>   
+                    </p:panelGrid>
+                </p:dialog>
             </div>
         </div>
     </ui:define>    
