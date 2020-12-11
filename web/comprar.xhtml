@@ -10,33 +10,24 @@
             <div class="ui-g-12 ui-lg-12">
                 <!-- Left Side -->
                 <div class="card card-w-title">
-                    <h1>Informacion</h1>
-                    <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank form-group">
+                    <h1>Informacion del Usuario</h1>
+                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group" style="color:#0084b8; font-size: 30px;">
                         <h:outputLabel value="#{loginController.usuarioLoggeado.nombre}" />
                         <h:outputLabel value="#{loginController.usuarioLoggeado.correo}" />
+                        <h:outputLabel value="Informacion del usuario" />
+                        <h:outputLabel value="Mas Informacion del usuario" />
+                        <h:outputLabel value="Aun mas Informacion del usuario" />
+                        <h:outputLabel value="Aun mas mas Informacion del usuario" />
                     </p:panelGrid>
                 </div>
-<!--                Este bloque es por decoracion no es requerimiento-->
                 <div class="card card-w-title">
-                    <h1>Estilo</h1>
-                    <p:panelGrid columns="1" style="margin-bottom:10px" layout="grid" styleClass="form-group ui-panelgrid-blank">
-                        <p:selectOneMenu id="console" value="#{selectOneMenuView.console}" style="margin-bottom:10px;">
-                            <f:selectItem itemLabel="Selecione estilo de la Bicicleta" itemValue="" />
-                            <f:selectItem itemLabel="Estilo 1" itemValue="Bicicleta 1" />
-                            <f:selectItem itemLabel="Estilo 2" itemValue="Bicicleta 2" />
-                            <f:selectItem itemLabel="Estilo 3" itemValue="Bicicleta 3" />
-                        </p:selectOneMenu>
-                    </p:panelGrid>
-                </div> 
-<!--                Este bloque es por decoracion no es requerimiento-->
-                <div class="card card-w-title">
-                    <h1>Fecha de Entrega</h1>
+                    <h1>Seleccione Fecha de Entrega</h1>
                     <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group" style="margin-top:10px">
                         <p:spacer />
-                        <p:calendar id="inline"  mode="inline"/>
+                        <p:datePicker value="#{calendarView.dateDe}" locale="de" monthNavigator="true" pattern="dd.MM.yyyy"/>
                     </p:panelGrid>
                 </div>
-                <p:commandButton value="Finalizar Compra" action="#{loginController.redireccionCalendario()}"/>
+                <p:commandButton value="Finalizar Compra" action="#{loginController.redireccionCalendario()}" style="font-size: 25px; background-color: #00a60e;"/>
             </div>
         </div>
     </ui:define>
