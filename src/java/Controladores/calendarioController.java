@@ -5,14 +5,22 @@
  */
 package Controladores;
 
-import correo.Evento;
+import DAO.UsuarioDao;
+import componentes.Evento;
 import Servicios.CalendarioServicio;
-import correo.Alerta;
+import Servicios.LoginServicio;
+import Servicios.ServicioUsuario;
+import Servicios.CalendarioServicio;
+
+import componentes.Alerta;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -31,8 +39,10 @@ public class calendarioController implements Serializable {
 
     @ManagedProperty("#{loginController}")
     private LoginController loginController;
+    
+    private UsuarioDao usuarioDao;
 
-    CalendarioServicio calendarioServicio = new CalendarioServicio();
+    CalendarioServicio calendarioServicio = new CalendarioServicio();        
 
     private ScheduleJava8View sj8v;
     private checkBoxController cbc;
@@ -123,6 +133,53 @@ public class calendarioController implements Serializable {
         this.loginController = loginController;
     }
     
+    
+    //_________________________________Metodos__________________________________________________________________________
+    
+    /*
+    Metodo que se ejecuta justo despues de de instanciar un aclase de calendarioController, esta llena en la lista de objetos de tipo 'Evento'
+    todos los eventos asociados con Usuario loggeado, que viene desde loginontroller
+    */
+    @PostConstruct
+    public void getEventosUsuario(){
+        List<Evento> eventos = calendarioServicio.getEventosUsuario(loginController.getUsuarioLoggeado());
+        popularModelo(eventos);
+    }
+    
+    /*
+    Metodo que traduce el evento que se le envie como parametro al  tipo "ScheduleEvent"
+    input -> evento:Evento
+    outpu -> eventoTraducido: DefaultScheduleEvent
+    */
+    private DefaultScheduleEvent traducirEvento(Evento evento){
+        LocalDateTime inicio = LocalDateTime.ofInstant(evento.getTiempoInicio().toInstant(), ZoneId.systemDefault());
+        LocalDateTime fin = LocalDateTime.ofInstant(evento.getTiempoFin().toInstant(), ZoneId.systemDefault());
+        
+        DefaultScheduleEvent eventoTraducido  = DefaultScheduleEvent.builder()
+                .title(evento.getTitulo())
+                .startDate(inicio)
+                .endDate(fin)
+                .description("Creador :" + usuarioDao.getUsuarioById(loginController.getUsuarioLoggeado().getUsuarioID()).getNombre() + "\nDescripcion: "
+                + evento.getDescripcion() + "\nParticipantes: " + evento.getUsuarios())
+                .build();
+        return eventoTraducido;        
+    }
+    
+    
+    /*
+    Metodo quese encarga de iterar sobre la lista de eventos que se le envia como parametro , traducirlos al tipo correcto y luego popular el modelo
+    'eventoModel'    
+    input-> eventos:List<Evento>
+    output-> none
+    */
+    public void popularModelo(List<Evento> eventos){
+     for(Evento evento: eventos){
+         DefaultScheduleEvent eventoTraducido = traducirEvento(evento);
+         eventModel.addEvent(eventoTraducido);
+        }   
+    }
+
+    
     public void addEvent() {
 
         if (event.isAllDay()) {
@@ -144,7 +201,7 @@ public class calendarioController implements Serializable {
         nuevoEvento.setCompletado((byte) 1);
         nuevoEvento.setUsuario(loginController.getUsuarioLoggeado());
         nuevoEvento.setDescripcion(event.getDescription());
-        nuevoEvento.setParticipantes("Prueba"); 
+//        nuevoEvento.setParticipantes("Prueba"); 
         //******* Este campo deberia de ser una Tabla nueva, porque 1 Evento puede tener Muchos Participantes
         nuevoEvento.setTiempoFin(Date.valueOf(event.getEndDate().toLocalDate()));
         nuevoEvento.setTiempoInicio(Date.valueOf(event.getStartDate().toLocalDate()));
@@ -161,29 +218,29 @@ public class calendarioController implements Serializable {
 
             case "Diariamente":
                 nuevaAlerta = new Alerta();
-                nuevaAlerta.setFechaFinal(Date.valueOf(event.getEndDate().toLocalDate()));
-                nuevaAlerta.setFechaProx(Date.valueOf(event.getStartDate().plusDays(1).toLocalDate()));
+//                nuevaAlerta.setFechaFinal(Date.valueOf(event.getEndDate().toLocalDate()));
+//                nuevaAlerta.setFechaProx(Date.valueOf(event.getStartDate().plusDays(1).toLocalDate()));
                 nuevaAlerta.setEvento(this.getNuevoEvento());
                 nuevaAlerta.setIntervalo(1);
-                nuevaAlerta.setNombreAlerta(event.getTitle());
+//                nuevaAlerta.setNombreAlerta(event.getTitle());
                 break;
 
             case "Semanalmente":
                 nuevaAlerta = new Alerta();
-                nuevaAlerta.setFechaFinal(Date.valueOf(event.getEndDate().toLocalDate()));
-                nuevaAlerta.setFechaProx(Date.valueOf(event.getStartDate().plusWeeks(1).toLocalDate()));
+//                nuevaAlerta.setFechaFinal(Date.valueOf(event.getEndDate().toLocalDate()));
+//                nuevaAlerta.setFechaProx(Date.valueOf(event.getStartDate().plusWeeks(1).toLocalDate()));
                 nuevaAlerta.setEvento(this.getNuevoEvento());
                 nuevaAlerta.setIntervalo(1);
-                nuevaAlerta.setNombreAlerta(event.getTitle());
+//                nuevaAlerta.setNombreAlerta(event.getTitle());
                 break;
 
             case "Mensualmente":
                 nuevaAlerta = new Alerta();
-                nuevaAlerta.setFechaFinal(Date.valueOf(event.getEndDate().toLocalDate()));
-                nuevaAlerta.setFechaProx(Date.valueOf(event.getStartDate().plusMonths(1).toLocalDate()));
+//                nuevaAlerta.setFechaFinal(Date.valueOf(event.getEndDate().toLocalDate()));
+//                nuevaAlerta.setFechaProx(Date.valueOf(event.getStartDate().plusMonths(1).toLocalDate()));
                 nuevaAlerta.setEvento(this.getNuevoEvento());
                 nuevaAlerta.setIntervalo(1);
-                nuevaAlerta.setNombreAlerta(event.getTitle());
+//                nuevaAlerta.setNombreAlerta(event.getTitle());
                 break;
         }
         calendarioServicio.insertAlerta(nuevaAlerta);
@@ -191,4 +248,4 @@ public class calendarioController implements Serializable {
 
     
 
-}
+}//endoflcas

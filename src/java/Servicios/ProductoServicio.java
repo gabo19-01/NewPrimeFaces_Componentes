@@ -12,7 +12,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.*;
-import facturacion.Producto;
+import componentes.Producto;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,7 +22,7 @@ import java.util.Set;
  */
 public class ProductoServicio {
     
-    private List<facturacion.Producto> productos;
+    private List<Producto> productos;
 
     private static EntityManagerFactory entityManagerFactory = null;
     private static EntityManager em = null;

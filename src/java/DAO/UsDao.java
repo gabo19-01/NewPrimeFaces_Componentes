@@ -1,6 +1,6 @@
 package DAO;
 
-import correo.Usuario;
+import componentes.Usuario;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package DAO;
 
-import correo.Usuario;
+import componentes.Usuario;
 import util.EntityManagerU;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

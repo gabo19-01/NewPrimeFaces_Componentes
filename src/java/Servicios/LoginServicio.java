@@ -11,7 +11,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.*;
-import correo.Usuario;
+import componentes.Usuario;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +21,7 @@ import java.util.Set;
  */
 public class LoginServicio {
 
-    private List<correo.Usuario> usuarios;
+    private List<Usuario> usuarios;
 
     private static EntityManagerFactory entityManagerFactory = null;
     private static EntityManager em = null;
@@ -33,7 +33,7 @@ public class LoginServicio {
     public static void startEntityManagerFactory() {
         if (entityManagerFactory == null) {
             try {
-                entityManagerFactory = Persistence.createEntityManagerFactory("EmailComponente");
+                entityManagerFactory = Persistence.createEntityManagerFactory("componentecorreos");
                 em = entityManagerFactory.createEntityManager();
             } catch (Exception e) {
                 e.printStackTrace();

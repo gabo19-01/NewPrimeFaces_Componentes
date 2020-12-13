@@ -2,7 +2,7 @@ package Servicios;
 
 import DAO.UsDao;
 import DAO.UsuarioDao;
-import correo.Usuario;
+import componentes.Usuario;
 
 import java.util.List;
 
