@@ -6,6 +6,7 @@
 package Controladores;
 
 import Servicios.LoginServicio;
+import componentes.Departamento;
 import java.io.IOException;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -88,17 +89,57 @@ public class LoginController {
     public void iniciarSesion() {
         ls.startEntityManagerFactory();
         if (this.verificar()) {
-            this.redirect("inventario.xhtml");
+            this.redirect("pagina_principal.xhtml");
         } else {
             FacesContext.getCurrentInstance()
                     .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Usuario o password incorrectos"));
         }
     }
+    
+    //SHAMUEL YO TE ELIJO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //Método para la condición de si se muestra o no el Modal para escoger departamento
+    public boolean tieneDepartamentos(){
+        boolean variosDepartamentos;
+        
+        if(ls.getDepartamentosByID(this.usuarioLoggeado.getUsuarioID()).size() >= 2){
+            variosDepartamentos = true;
+        }else {
+            variosDepartamentos = false;
+        }
+        
+        return variosDepartamentos;
+    }
+    
+    //SHAMUEL YO TE ELIJO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //Método que llena el Modal para escoger departamento
+    public List<String> llenarDeparatamentos(){
+        List<String> nombresDepartamentos = null;
+        for(Departamento d : ls.getDepartamentosByID(this.usuarioLoggeado.getUsuarioID())){
+            nombresDepartamentos.add(d.getNombreDepartamento());
+        }
+        return nombresDepartamentos;
+    }
+
+    //SHAMUEL YO TE ELIJO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //Método para hacer la redirección a la página que corresponde (No se cual es)
+    public void redireccionPagPrincipal(){
+        this.redirect("");
+    }
+    
     public void redireccionCalendario() {
         this.redirect("data.xhtml");
     }
     public void redireccionComprar() {
         this.redirect("comprar.xhtml");
+    }
+    public void redireccionBitacora() {
+        this.redirect("bitacora.xhtml");
+    }
+    public void redireccionInventario() {
+        this.redirect("inventario.xhtml");
+    }
+    public void redireccionAdministrar() {
+        this.redirect("administrar_usuarios.xhtml");
     }
 
 }

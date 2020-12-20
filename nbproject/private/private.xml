@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Users/6fantasticos/Documents/NewPrimeFaces_Componentes/src/java/org/primefaces/manhattan/view/data/DataGridView.java</file>
+            <file>file:/D:/Users/6fantasticos/Documents/NewPrimeFaces_Componentes/src/java/Servicios/ServicioUsuario.java</file>
+            <file>file:/D:/Users/6fantasticos/Documents/NewPrimeFaces_Componentes/src/java/Controladores/AdministracionController.java</file>
+            <file>file:/D:/Users/6fantasticos/Documents/NewPrimeFaces_Componentes/src/java/Servicios/AdministracionService.java</file>
+            <file>file:/D:/Users/6fantasticos/Documents/NewPrimeFaces_Componentes/web/pagina_principal.xhtml</file>
+            <file>file:/D:/Users/6fantasticos/Documents/NewPrimeFaces_Componentes/src/java/DAO/UsuarioDao.java</file>
+            <file>file:/D:/Users/6fantasticos/Documents/NewPrimeFaces_Componentes/src/java/org/primefaces/manhattan/domain/Car.java</file>
+            <file>file:/D:/Users/6fantasticos/Documents/NewPrimeFaces_Componentes/web/administrar_usuarios.xhtml</file>
+            <file>file:/D:/Users/6fantasticos/Documents/NewPrimeFaces_Componentes/web/comprar.xhtml</file>
+            <file>file:/D:/Users/6fantasticos/Documents/NewPrimeFaces_Componentes/src/java/org/primefaces/manhattan/service/CarService.java</file>
+        </group>
     </open-files>
 </project-private>

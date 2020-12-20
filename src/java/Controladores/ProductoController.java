@@ -15,44 +15,44 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import componentes.Producto;
 import Servicios.ProductoServicio;
+import java.io.Serializable;
+import java.util.ArrayList;
 /**
  *
  * @author carlossimpsonglaston
  */
 @ManagedBean(name = "productoController")
 @SessionScoped
-public class ProductoController {
-    private String descripcion;
-    private double precioPorMenor;
-    private String nombre;
+public class ProductoController implements Serializable{
     ProductoServicio ps = new ProductoServicio();
-    
-    public String getDescripcion() {
-        return descripcion;
+    private Producto productoSeleccionado;
+
+    public Producto getProductoSeleccionado() {
+        return productoSeleccionado;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setProductoSeleccionado(Producto productoSeleccionado) {
+        this.productoSeleccionado = productoSeleccionado;
     }
-
-    public double getPrecioPorMenor() {
-        return precioPorMenor;
+    public void redirect(String url) {
+        try {
+            HttpServletRequest request = (HttpServletRequest) FacesContext
+                    .getCurrentInstance().getExternalContext().getRequest();
+            FacesContext
+                    .getCurrentInstance()
+                    .getExternalContext()
+                    .redirect(
+                            request.getContextPath()
+                            + "/" + url);
+        } catch (IOException e) {
+            System.out.println("No se pudo rediredonaresfacilonar " + e);
+        }
     }
-
-    public void setPrecioPorMenor(double precioPorMenor) {
-        this.precioPorMenor = precioPorMenor;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public List<Producto> allProductos() {
         List<Producto> productos = ps.allProductos();
         return productos;
+    }
+    public void redireccionComprar() {
+        this.redirect("comprar.xhtml");
     }
 }

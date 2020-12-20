@@ -19,11 +19,17 @@
                     <h1>
                         <big>
                             <big>
-                                <big><b>Bienvenido</b></big>
+                                <big><b>Bienvenido #{loginController.usuarioLoggeado.nombre}</b></big>
                             </big>
                         </big>
                     </h1>
-                   
+                   <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group" style="color:#0084b8; font-size: 30px; width: 100%;">
+           
+                        <p:commandButton value="Bitacora" action="#{loginController.redireccionBitacora()}" style="width:100%; font-size: 25px; background-color: #00a60e;"/>
+                        <p:commandButton value="Inventario" action="#{loginController.redireccionInventario()}" style="width:100%; font-size: 25px; background-color: #277cf2;"/>
+                        <p:commandButton value="Administrar Usuarios" action="#{loginController.redireccionAdministrar()}" style="width:100%; font-size: 25px; background-color: #ff8f2e;"/>
+                        <p:commandButton value="Eventos" style="width:100%; font-size: 25px; background-color: #ff75d8;"/>
+                    </p:panelGrid>
                 </div>
             </div>
         </div>

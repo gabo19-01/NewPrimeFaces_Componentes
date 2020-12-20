@@ -15,6 +15,7 @@
  */
 package org.primefaces.manhattan.view.data;
 
+import componentes.Usuario;
 import org.primefaces.PrimeFaces;
 import org.primefaces.manhattan.domain.Car;
 import org.primefaces.manhattan.service.CarService;
@@ -35,6 +36,8 @@ public class DataGridView implements Serializable {
     private List<Car> cars;
     
     private Car selectedCar;
+    private Usuario selectedUsuario;
+    
     
     @Inject
     private CarService service;
@@ -42,6 +45,8 @@ public class DataGridView implements Serializable {
     @PostConstruct
     public void init() {
         cars = service.createCars(48);
+//        this.selectedUsuario = new Usuaurio()
+                
     }
 
     public List<Car> getCars() {
@@ -72,5 +77,13 @@ public class DataGridView implements Serializable {
         FacesContext.getCurrentInstance()
                 .addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_INFO, clientId + " multiview state has been cleared out", null));
+    }
+
+    public Usuario getSelectedUsuario() {
+        return selectedUsuario;
+    }
+
+    public void setSelectedUsuario(Usuario selectedUsuario) {
+        this.selectedUsuario = selectedUsuario;
     }
 }

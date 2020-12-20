@@ -19,7 +19,7 @@ public class BitacoraDAO<Bitacora> implements IDAO {
     private final EntityManager em;
 
     public BitacoraDAO() {
-        this.em = EntityManagerU.getEntityManager("EmailComponente");
+        this.em = EntityManagerU.getEntityManager("componentes");
     }
     
     @Override

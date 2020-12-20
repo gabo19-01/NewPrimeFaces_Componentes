@@ -22,7 +22,7 @@ import java.util.Set;
  */
 public class ProductoServicio {
     
-    private List<Producto> productos;
+    private List<componentes.Producto> productos;
 
     private static EntityManagerFactory entityManagerFactory = null;
     private static EntityManager em = null;
@@ -33,7 +33,7 @@ public class ProductoServicio {
     public static void startEntityManagerFactory() {
         if (entityManagerFactory == null) {
             try {
-                entityManagerFactory = Persistence.createEntityManagerFactory("EmailComponente");
+                entityManagerFactory = Persistence.createEntityManagerFactory("componentes");
                 em = entityManagerFactory.createEntityManager();
             } catch (Exception e) {
                 e.printStackTrace();

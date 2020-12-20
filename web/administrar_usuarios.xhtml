@@ -4,25 +4,87 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template.xhtml"> 
-    <ui:define name="title">Forms</ui:define>     
-    <ui:define name="content">    
-        <div class="ui-g ui-fluid">
-            <div class="ui-g-12 ui-lg-12">
-                <!-- Left Side -->
-                <div class="card card-w-title">
-                    <h1>Informacion</h1>
-                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group">
-                        <p:inputText placeholder="Nombre" value="" style=" margin: 5px; font-weight: bold;"/>
-                        <p:inputText placeholder="Profesion" value="" style=" margin: 5px; font-weight: bold;"/>
-                        <p:inputText placeholder="Otra info" value="" style=" margin: 5px; font-weight: bold;"/>
-                        <p:inputText placeholder="mas cosas" value="" style=" margin: 5px; font-weight: bold;"/>
-                        <p:inputText placeholder="aun mas cosas" value="" style=" margin: 5px; font-weight: bold;"/>
-                        <p:inputText placeholder="aun mas mas cosas" value="" style=" margin: 5px; font-weight: bold;"/>
-                    </p:panelGrid>
+    <ui:define name="title">Forms</ui:define>  
+    <f:metadata>                   
+<!--        <f:viewAction action="#{administracionController.autoRellenar()}" />-->
+    </f:metadata>  
+    <ui:define name="content">
+        <h:form id="form">
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <!-- Left Side -->
+                    <div class="card card-w-title">
+                        <p:dataGrid var="usuario" value="#{administracionController.allUsuarios}" columns="3" layout="grid"
+                                    rows="6" paginator="true" id="cars"
+                                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                    rowsPerPageTemplate="3,6,9,12,16">
+
+
+                            <p:panel header="#{usuario.nombre}" style="text-align:center">
+                                <h:panelGrid columns="1" style="width:100%" cellpadding="6">
+                                    <h:outputText value="#{usuario.correo}" styleClass="Fs14 FontDosisMedium"/>
+
+                                    <h:outputText value="#{usuario.contrasena}" />
+
+                                    <p:commandButton icon="ui-icon-search" styleClass="AquaButton" update=":form:selectedCarDetail" oncomplete="PF('carDialog').show()">
+                                        <f:setPropertyActionListener value="#{usuario}" target="#{dataGridView.selectedUsuario}" />
+                                    </p:commandButton>
+
+
+                                    <p:commandButton action="#{administracionController.deleteUsuario()}" icon="fa fa-trash-o" styleClass="AquaButton" update="@form" >
+                                        <f:setPropertyActionListener value="#{usuario}" target="#{dataGridView.selectedUsuario}" />
+                                    </p:commandButton>
+
+
+                                </h:panelGrid>
+                            </p:panel>
+
+                        </p:dataGrid>
+
+                        <p:commandButton  icon="fa fa-plus" styleClass="AquaButton" oncomplete="PF('nuevoUsuario').show()">  </p:commandButton>
+
+                        <p:dialog header="Usario" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" responsive="true" width="400">
+                            <p:outputPanel id="selectedCarDetail" style="text-align:center;">
+                                <p:panelGrid  columns="2" rendered="#{not empty dataGridView.selectedUsuario}" columnClasses="label,value" style="width:100%">
+                                    <h:outputText value="Id:" />
+                                    <h:outputText value="#{dataGridView.selectedUsuario.usuarioID}" />
+                                </p:panelGrid>
+
+                                <p:inputText placeholder="#{dataGridView.selectedUsuario.nombre}" value="#{dataGridView.selectedUsuario.nombre}" />
+                                <p></p>
+                                <p:inputText placeholder="#{dataGridView.selectedUsuario.correo}" value="#{dataGridView.selectedUsuario.correo}" />
+                                <p></p>
+                                <p:inputText placeholder="#{dataGridView.selectedUsuario.contrasena}" value="#{dataGridView.selectedUsuario.contrasena}" />
+
+                            </p:outputPanel>
+                        </p:dialog>
+
+                        <p:dialog header="Nuevo Usuario" widgetVar="nuevoUsuario" modal="true" showEffect="fade" hideEffect="fade" resizable="false" responsive="true" width="400">
+                            <p:outputPanel id="newUser" style="text-align:center;">
+
+                                <p:inputText placeholder="Nombre" value="#{administracionController.nuevoUsuario.nombre}" />
+                                <p></p>
+                                <p:inputText placeholder="Correo" value="#{administracionController.nuevoUsuario.correo}" />
+                                <p></p>
+                                <p:inputText placeholder="Contraseña" value="#{administracionController.nuevoUsuario.contrasena}" />
+
+                                <p></p>
+                                <h:outputLabel for="multiple" value="Departamentos:" />
+                                <p:selectCheckboxMenu id="multiple" value="#{administracionController.departamentosInsert}" label="" multiple="true"
+                                                      filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                                    <f:selectItems value="#{administracionController.allDepartamentos}" />
+                                </p:selectCheckboxMenu>
+                                <p></p>
+                                <p:commandButton action="#{administracionController.insertUsuario()}" icon="fa fa-save" styleClass="AquaButton" oncomplete="PF('nuevoUsuario').hide()"></p:commandButton>
+
+
+
+                            </p:outputPanel>
+                        </p:dialog>
+                    </div>
                 </div>
-                
-                <p:commandButton value="Guardar"/>
             </div>
-        </div>
+        </h:form>
+
     </ui:define>
 </ui:composition>

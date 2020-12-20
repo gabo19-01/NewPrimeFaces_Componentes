@@ -6,6 +6,7 @@
 package Servicios;
 
 
+import componentes.Departamento;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -33,7 +34,7 @@ public class LoginServicio {
     public static void startEntityManagerFactory() {
         if (entityManagerFactory == null) {
             try {
-                entityManagerFactory = Persistence.createEntityManagerFactory("componentecorreos");
+                entityManagerFactory = Persistence.createEntityManagerFactory("componentes");
                 em = entityManagerFactory.createEntityManager();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -71,5 +72,13 @@ public class LoginServicio {
         stopEntityManagerFactory();
         return usuario;
 
+    }
+
+    public List<Departamento> getDepartamentosByID(int loggeadoID){
+       List<Departamento> departamentos;
+       startEntityManagerFactory();
+       departamentos = em.find(Usuario.class, loggeadoID).getDepartamentos();
+       stopEntityManagerFactory();
+       return departamentos;
     }
 }

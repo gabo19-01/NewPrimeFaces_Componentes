@@ -3,10 +3,17 @@ package Servicios;
 import DAO.UsDao;
 import DAO.UsuarioDao;
 import componentes.Usuario;
+import java.io.Serializable;
 
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 
-public class ServicioUsuario implements UsDao {
+
+@Named
+@ApplicationScoped
+public class ServicioUsuario implements UsDao  {
 
     private final UsDao usDao;
 

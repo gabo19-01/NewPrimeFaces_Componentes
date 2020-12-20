@@ -14,21 +14,12 @@
     </ui:define>
     <ui:define name="content">
         <div class="ui-g dashboard">
+            <ui:repeat var="producto" value="#{productoController.allProductos()}" varStatus="_status">
             <div class="ui-g-12 ui-lg-3 ui-xl-3">
-                <p:graphicImage name="bici1.jpeg" library="bicicletas" class="bicicletas"/>
-                <p:commandButton  value="Mas informacion" type="button" onclick="PF('dlg').show()" style="width: 100%"/>
-                <p:dialog header="Login" widgetVar="dlg" resizable="false" draggable="false" styleClass="dialogDemo" responsive="true" hideEffect="scale">
-                    <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-4,ui-grid-col-8">
-                        <h:outputLabel value="Precio" />
-                        <br></br>
-                        <h:outputLabel value="descripcion" />
-                        <br></br>
-                        <f:facet name="footer">
-                            <p:commandButton value="Comprar" action="#{loginController.redireccionComprar()}" styleClass="green-btn"/>
-                        </f:facet>   
-                    </p:panelGrid>
-                </p:dialog>
+                <p:graphicImage name="bici#{_status.index}.jpg" library="bicicletas" class="bicicletas"/>
+                <p:commandButton  value="#{producto.nombre}" action="#{loginController.redireccionComprar()}"  style="width: 100%"/>
             </div>
+            </ui:repeat>
         </div>
     </ui:define>    
 </ui:composition>

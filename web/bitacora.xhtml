@@ -10,15 +10,27 @@
             <div class="ui-g-12 ui-lg-12">
                 <!-- Left Side -->
                 <div class="card card-w-title">
-                    <h1>Productos y Recordatorios</h1>
-                    <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank form-group">
-                        <h:outputLabel value="#{loginController.usuarioLoggeado.nombre}" />
-                    </p:panelGrid>
+                    <h1>Bitacora de acciones</h1>
+                    <p:dataTable var="bitacora" value="#{bitacoraController.logs}">
+                        <p:column headerText="Accion">
+                            <h:outputText value="#{bitacora.accion}" />
+                        </p:column>
+                     
+                        <p:column headerText="Entidad">
+                            <h:outputText value="#{bitacora.entidad}" />
+                        </p:column>
+                     
+                        <p:column headerText="Id Entidad">
+                            <h:outputText value="#{bitacora.entidadID}" />
+                        </p:column>
+                     
+                        <p:column headerText="Cuando">
+                            <h:outputText value="#{bitacora.fechaHora}" />
+                        </p:column>
+                    </p:dataTable>
                 </div>
-                <div class="ui-g-12 ui-lg-3 ui-xl-3">
-                    <p:graphicImage name="bici1.jpeg" library="bicicletas" class="bicicletas"/>
-                    <h:outputLabel value="Fecha De entrega" style="color:#0084b8; font-size: 20px" />
-                </div>
+                
+                <p:commandButton value="Guardar"/>
             </div>
         </div>
     </ui:define>

@@ -12,7 +12,7 @@ public class UsuarioDao implements UsDao {
     private final EntityManager entityManager;
 
     public UsuarioDao() {
-        this.entityManager = EntityManagerU.getEntityManager("EmailComponente");
+        this.entityManager = EntityManagerU.getEntityManager("componentes");
     }
 
     @Override

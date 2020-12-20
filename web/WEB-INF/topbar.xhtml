@@ -10,21 +10,15 @@
         <a href="#" id="layout-menu-btn" class="menu-btn">
             <i class="fa fa-bars"></i>
         </a>
-        
-        <div class="topbar-search">
-            <input type="text" class="ui-widget" />
-            <i class="fa fa-search"></i>
-        </div>
-        
         <div class="layout-topbar-menu-wrapper">            
             <ul class="topbar-menu">
                 <li class="profile-item">
                     <a href="#">                            
-                        <p:graphicImage name="images/avatar.png" library="manhattan-layout" />
-                        <span class="topbar-item-name profile-name">Madison Hughes</span>
+                        <p:graphicImage name="images/dashboard/flag-brazil.png" library="manhattan-layout" />
+                        <span class="topbar-item-name profile-name">#{loginController.usuarioLoggeado.nombre}</span>
                     </a>
                     
-                    <ul class="animated">
+<!--                    <ul class="animated">
                         <li role="menuitem">
                             <a href="#">
                                 <i class="fa fa-fw fa-user"></i>
@@ -51,15 +45,15 @@
                                 <span>Logout</span>
                             </a>
                         </li>
-                    </ul>
+                    </ul>-->
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="topbar-icon swing fa fa-fw fa-envelope-o"></i>
+                   <!-- <a href="#">
+                        <i class="topbar-icon swing fa fa-fw fa-list"></i>
                         <span class="topbar-badge rubberBand">5</span>
                         <span class="topbar-item-name">Messages</span>
-                    </a>
-                    <ul class="animated">
+                    </a> -->
+<!--                    <ul class="animated">
                         <li role="menuitem">
                             <a href="#" class="topbar-message">
                                 <p:graphicImage name="images/avatar1.png" library="manhattan-layout" width="35"/>
@@ -90,9 +84,9 @@
                                 <span>Out of office</span>
                             </a>
                         </li>
-                    </ul>
+                    </ul>-->
                 </li>
-                <li>
+<!--                <li>
                     <a href="#">
                         <i class="topbar-icon fa fa-fw fa-globe"></i>
                         <span class="topbar-badge rubberBand">2</span>
@@ -125,16 +119,14 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li>-->
             </ul>
             
             <a href="#" class="topbar-menu-btn">
-                <p:graphicImage name="images/avatar.png" library="manhattan-layout" />
+                <p:graphicImage name="images/dashboard/flag-brazil.png" library="manhattan-layout" />
             </a>
             
-            <a href="#" class="rightpanel-btn">
-                <i class="topbar-icon fa fa-fw fa-outdent"></i>
-            </a>
+            
         </div>
     </div>
 
