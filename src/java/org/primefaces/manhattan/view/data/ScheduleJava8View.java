@@ -70,44 +70,44 @@ public class ScheduleJava8View implements Serializable {
         eventModel = new DefaultScheduleModel();
 
         DefaultScheduleEvent event = DefaultScheduleEvent.builder()
-                .title("Champions League Match")
+                .title("Fiesta de Navidad")
                 .startDate(previousDay8Pm())
                 .endDate(previousDay11Pm())
-                .description("Team A vs. Team B")
+                .description("Fiesta de Navidad de Pablo")
                 .build();
         eventModel.addEvent(event);
 
         event = DefaultScheduleEvent.builder()
-                .title("Birthday Party")
+                .title("Cumple de Shamuel")
                 .startDate(today1Pm())
                 .endDate(today6Pm())
-                .description("Aragon")
+                .description("Cumple de Shamuel")
                 .overlapAllowed(true)
                 .build();
         eventModel.addEvent(event);
 
         event = DefaultScheduleEvent.builder()
-                .title("Breakfast at Tiffanys")
+                .title("Evento random del mes")
                 .startDate(nextDay9Am())
                 .endDate(nextDay11Am())
-                .description("all you can eat")
+                .description("evento random del mes")
                 .overlapAllowed(true)
                 .build();
         eventModel.addEvent(event);
 
         event = DefaultScheduleEvent.builder()
-                .title("Plant the new garden stuff")
+                .title("fiesta de vacaciones")
                 .startDate(theDayAfter3Pm())
                 .endDate(fourDaysLater3pm())
-                .description("Trees, flowers, ...")
+                .description("fiestas!!!!!")
                 .build();
         eventModel.addEvent(event);
 
         DefaultScheduleEvent scheduleEventAllDay = DefaultScheduleEvent.builder()
-                .title("Holidays (AllDay)")
+                .title("Evento random del mes2")
                 .startDate(sevenDaysLater0am())
                 .endDate(eightDaysLater0am())
-                .description("sleep as long as you want")
+                .description("evento random del mes 2")
                 .allDay(true)
                 .build();
         eventModel.addEvent(scheduleEventAllDay);

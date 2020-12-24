@@ -14,17 +14,14 @@
                     <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group" style="color:#0084b8; font-size: 30px;">
                         <h:outputLabel value="#{loginController.usuarioLoggeado.nombre}" />
                         <h:outputLabel value="#{loginController.usuarioLoggeado.correo}" />
-                        
+                        <h:outputLabel value="#{productoController.productoSeleccionado.nombre}" />
                     </p:panelGrid>
                 </div>
-                <div class="card card-w-title">
-                    <h1>Seleccione Fecha de Entrega</h1>
-                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group" style="margin-top:10px">
-                        <p:spacer />
-                        <p:datePicker value="#{calendarView.dateDe}" locale="de" monthNavigator="true" pattern="dd.MM.yyyy"/>
-                    </p:panelGrid>
-                </div>
-                <p:commandButton value="Finalizar Compra" action="#{loginController.redireccionCalendario()}" style="font-size: 25px; background-color: #00a60e;"/>
+                
+                <p:commandButton value="Finalizar Compra" onclick="PF('dlg1').show();" style="font-size: 25px; background-color: #00a60e;"/>
+                <p:dialog header="Compra" widgetVar="dlg1" minHeight="40">
+                    <h:outputText value="Compra Realizada con exito" />
+                </p:dialog>
             </div>
         </div>
     </ui:define>

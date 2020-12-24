@@ -13,27 +13,25 @@ import javax.transaction.Transactional;
 import componentes.Usuario;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 /**
- *Clase que permite accesar a todos lo eventos del calendario
+ * Clase que permite accesar a todos lo eventos del calendario
+ *
  * @author gabri
  */
-
-
 public class CalendarioServicio {
-    
+
     private static EntityManagerFactory entityManagerFactory = null;
     private static EntityManager em = null;
-
-
 
     // Metodo que se encarga de crear la entidad.
     public static void startEntityManagerFactory() {
         if (entityManagerFactory == null) {
             try {
-                entityManagerFactory = Persistence.createEntityManagerFactory("componentecorreos");
+                entityManagerFactory = Persistence.createEntityManagerFactory("componentes");
                 em = entityManagerFactory.createEntityManager();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -52,38 +50,41 @@ public class CalendarioServicio {
                 }
             }
             em.close();
-            entityManagerFactory = null; 
+            entityManagerFactory = null;
         }
     }
-        
-        
-    
+
     @Transactional
-    public int insertEvent(Evento evento){
+    public int insertEvent(Evento evento) {
         this.em.persist(evento);
         em.flush();
         return evento.getEventoID();
     }
+
     @Transactional
-    public void insertAlerta(Alerta alerta){
+    public void insertAlerta(Alerta alerta) {
         this.em.persist(alerta);
-        em.flush(); 
+        em.flush();
     }
-    
+
     /*
     Metodo que se encarga de conseguir todos los eventos asociados al usuario que se le envie como parametro
     input -> creadro:Usuario
     output -> eventos:List<Evento>
-    */
-    public List<Evento> getEventosUsuario(Usuario creador){
-        int creadorId = creador.getUsuarioID();
-        
+     */
+    public List<Evento> getEventosUsuario(Usuario creador) {
         startEntityManagerFactory();
-        TypedQuery<Evento> query;
-        query = em.createQuery("SELECT e FORM Evento e WHERE creador = " + creadorId + ";", Evento.class);
-        List<Evento> eventos = query.getResultList();
+        em.getTransaction().begin();
+        em.clear();
+//        TypedQuery<Evento> query;
+        List<Evento> listaEventos = em.createQuery("SELECT e FROM Evento WHERE creador = "
+                + creador.getUsuarioID()).getResultList();
+
+//        query = em.createQuery("SELECT e FROM Evento WHERE creador = " + creadorId + ";", Evento.class);
+//        List<Evento> eventos = query.getResultList();
+        em.getTransaction().commit();
         stopEntityManagerFactory();
-        return eventos;        
-    }    
-    
+        return listaEventos;
+    }
+
 }//endofclass

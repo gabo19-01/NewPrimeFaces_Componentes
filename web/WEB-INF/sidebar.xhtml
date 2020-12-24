@@ -24,6 +24,7 @@
                             <p:menuitem id="pm_dashboard" value="Menu" icon="fa fa-bars" outcome="/pagina_principal" />           
                             <p:menuitem id="pm_doc" value="Inventario" icon="fa fa-shopping-cart" outcome="/inventario"/>
                             <p:menuitem id="pm_buynow" value="Cerrar Sesion" icon="fa fa-sign-out" outcome="/login"/>
+                            <p:menuitem id="pm_admin" value="Adminstracion" icon="fa fa-user" outcome="/administrar_usuarios" rendered="#{loginController.puedeAdministrar()}"/>
                         </pm:menu>
                     </h:form>
                 </div>

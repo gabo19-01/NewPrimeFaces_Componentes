@@ -6,6 +6,8 @@
  */
 package Servicios;
 
+import static Servicios.LoginServicio.startEntityManagerFactory;
+import static Servicios.LoginServicio.stopEntityManagerFactory;
 import componentes.Departamento;
 import componentes.Evento;
 import componentes.Usuario;
@@ -83,12 +85,12 @@ public class AdministracionService implements Serializable {
         usuarioSinActualizar.setContrasena(u.getContrasena());
         usuarioSinActualizar.setCorreo(u.getCorreo());
         usuarioSinActualizar.setNombre(u.getNombre());
-        usuarioSinActualizar.setDepartamentos(u.getDepartamentos());
+        //usuarioSinActualizar.setDepartamentos(u.getDepartamentos());
         em.getTransaction().commit();
         this.stopEntityManagerFactory();
     }
 
-    public List<Departamento> usuarioDepartamentosID(Usuario u) {
+    /*public List<Departamento> usuarioDepartamentosID(Usuario u) {
         this.startEntityManagerFactory();
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
@@ -100,6 +102,17 @@ public class AdministracionService implements Serializable {
         List<Departamento> listaNombres = this.usuarioDepartamentosNombre(list);
         this.stopEntityManagerFactory();
         return listaNombres;
+    }*/
+    
+    @Transactional
+    public List<Departamento> getDepartamentosByID(int loggeadoID){
+       List<Departamento> departamentos;
+       startEntityManagerFactory();
+       em.getTransaction().begin();
+       departamentos = em.find(Usuario.class, loggeadoID).getDepartamentos();
+       em.getTransaction().commit();
+       stopEntityManagerFactory();
+       return departamentos;
     }
 
     //Llamado por metodo de arriba

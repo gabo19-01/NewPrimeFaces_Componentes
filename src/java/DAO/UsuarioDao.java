@@ -1,13 +1,14 @@
 package DAO;
 
 import componentes.Usuario;
+import java.io.Serializable;
 import util.EntityManagerU;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import java.util.List;
 
-public class UsuarioDao implements UsDao {
+public class UsuarioDao implements UsDao, Serializable {
 
     private final EntityManager entityManager;
 

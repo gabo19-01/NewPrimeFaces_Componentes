@@ -48,61 +48,67 @@
                 }
             }
         </style>
-        <div class="ui-g-12">
+       <!-- <div class="ui-g-12">
+            <f:metadata>                   
+                <f:viewAction action="{calendarioController.getEventosUsuario()}" />
+            </f:metadata>
+
+
             <h:form enctype="multipart/form-data">
                 <p:growl id="messages" showDetail="true" />
 
                 <h:panelGrid columnClasses="value">
-                    <p:schedule id="schedule" value="#{scheduleJava8View.eventModel}" widgetVar="myschedule" >
-                        <p:ajax event="dateSelect" listener="#{scheduleJava8View.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-                        <p:ajax event="eventSelect" listener="#{scheduleJava8View.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-                        <p:ajax event="eventMove" listener="#{scheduleJava8View.onEventMove}" update="messages" />
-                        <p:ajax event="eventResize" listener="#{scheduleJava8View.onEventResize}" update="messages" />
+                    <p:schedule id="schedule" value="{calendarioController.eventModel}" widgetVar="myschedule" >
+                        <p:ajax event="dateSelect" listener="{calendarioController.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+                        <p:ajax event="eventSelect" listener="{calendarioController.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+                        <p:ajax event="eventMove" listener="{calendarioController.onEventMove}" update="messages" />
+                        <p:ajax event="eventResize" listener="{calendarioController.onEventResize}" update="messages" />
 
                     </p:schedule>
                 </h:panelGrid>
 
                 <p:dialog widgetVar="eventDialog" header="Informacion a Enviar" showEffect="clip" hideEffect="clip" width="700">
-                    <!--
-                        Esta info debe venir autocompletada desde la pagina anterior 
-                        donde ya se realizo la compra. Aqui el cliente solo decide los dias 
-                        que quiere como recordatorio
-                    -->
+                    
+                    
                     <h:panelGrid id="eventDetails" columns="2">
                         <p:outputLabel for="title" value="Nombre" />
-                        <p:inputText id="title" value="#{scheduleJava8View.event.title}" required="true" /> 
+                        <p:inputText id="title" value="{scheduleJava8View.event.title}" required="true" /> 
 
                         <p:outputLabel value="Descripción del Evento:" />
                         <p:inputTextarea rows="6" cols="33" />
 
                         <p:outputLabel for="from" value="Desde:" />
-                        <p:datePicker id="from" value="#{calendarioController.event.startDate}" pattern="dd/MM/yyyy" showTime="true" appendTo="@(body)"  />
+                        <p:datePicker id="from" value="" pattern="dd/MM/yyyy" showTime="true" appendTo="@(body)"  />
 
                         <p:outputLabel for="to" value="Hasta:" />
-                        <p:datePicker id="to" value="#{calendarioController.event.endDate}" pattern="dd/MM/yyyy" showTime="true" appendTo="@(body)" />
-                        
+                        <p:datePicker id="to" value="{calendarioController.event.endDate}" pattern="dd/MM/yyyy" showTime="true" appendTo="@(body)" />
+
                         <h:outputLabel for="multiple" value="Destinatarios:" />
-                        <p:selectCheckboxMenu id="multiple" value="#{checkBoxController.selectedCorreos}" label="Correos" multiple="true"
+                        <p:selectCheckboxMenu id="multiple" value="{checkBoxController.selectedCorreos}" label="Correos" multiple="true"
                                               filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
-                            <p:ajax event="itemUnselect" listener="#{checkBoxController.onItemUnselect}" />
-                            <f:selectItems value="#{checkBoxController.correos}" />
+                            <p:ajax event="itemUnselect" listener="{checkBoxController.onItemUnselect}" />
+                            <f:selectItems value="{checkBoxController.correos}" />
                         </p:selectCheckboxMenu>
-                        
+
                         <p:outputLabel value="Recordatorio:" />
-                        <p:selectOneMenu id="console" value="#{calendarioController.intervaloSeleccionado}">
-                            <f:selectItem value="#{calendarioController.intervalos}"/>
+                        <p:selectOneMenu id="console" value="{calendarioController.intervaloSeleccionado}">
+                            <f:selectItem value="{calendarioController.intervalos}"/>
                         </p:selectOneMenu>
 
                         <p:outputLabel for="allDay" value="All Day (see #1164):" />
-                        <h:selectBooleanCheckbox id="allDay" value="#{scheduleJava8View.event.allDay}" />
+                        <h:selectBooleanCheckbox id="allDay" value="{scheduleJava8View.event.allDay}" />
                         <p:commandButton type="reset" value="Reset" />
-                        <p:commandButton id="addButton" value="Save" action="#{scheduleJava8View.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
- 
+                        <p:commandButton id="addButton" value="Save" action="{scheduleJava8View.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+
                     </h:panelGrid>
                 </p:dialog>    
             </h:form>
-        </div>
+        </div>-->
 
-
+            <div class="ui-g-12">
+                <p:panel header="Calendar" style="height:100%">
+                    <p:schedule value="#{scheduleJava8View.eventModel}" leftHeaderTemplate="prev,next"/>
+                </p:panel>
+            </div>
     </ui:define>
 </ui:composition>

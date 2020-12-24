@@ -13,7 +13,7 @@ import javax.inject.Named;
 
 @Named
 @ApplicationScoped
-public class ServicioUsuario implements UsDao  {
+public class ServicioUsuario implements UsDao, Serializable  {
 
     private final UsDao usDao;
 

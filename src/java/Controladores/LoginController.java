@@ -27,6 +27,7 @@ public class LoginController {
     LoginServicio ls = new LoginServicio();
     private String usuario;
     private String contrasenha;
+    private boolean administrar = false;
 
     private Usuario usuarioLoggeado;
     
@@ -89,15 +90,23 @@ public class LoginController {
     public void iniciarSesion() {
         ls.startEntityManagerFactory();
         if (this.verificar()) {
+            this.administrar = false;
             this.redirect("pagina_principal.xhtml");
-        } else {
+            
+        }else if(usuario.equals("admin") && contrasenha.equals("admin")){
+            this.administrar = true;
+            this.redirect("administrar_usuarios.xhtml");
+        }else {
+        
             FacesContext.getCurrentInstance()
                     .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Usuario o password incorrectos"));
         }
     }
     
-    //SHAMUEL YO TE ELIJO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //Método para la condición de si se muestra o no el Modal para escoger departamento
+    public boolean puedeAdministrar(){
+        return this.administrar;
+    }
+    
     public boolean tieneDepartamentos(){
         boolean variosDepartamentos;
         
@@ -110,8 +119,6 @@ public class LoginController {
         return variosDepartamentos;
     }
     
-    //SHAMUEL YO TE ELIJO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //Método que llena el Modal para escoger departamento
     public List<String> llenarDeparatamentos(){
         List<String> nombresDepartamentos = null;
         for(Departamento d : ls.getDepartamentosByID(this.usuarioLoggeado.getUsuarioID())){
@@ -119,9 +126,6 @@ public class LoginController {
         }
         return nombresDepartamentos;
     }
-
-    //SHAMUEL YO TE ELIJO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //Método para hacer la redirección a la página que corresponde (No se cual es)
     public void redireccionPagPrincipal(){
         this.redirect("");
     }
@@ -141,5 +145,18 @@ public class LoginController {
     public void redireccionAdministrar() {
         this.redirect("administrar_usuarios.xhtml");
     }
+    public void redireccionEventos(){
+        this.redirect("data.xhtml");
+    }
+
+    public boolean isAdministrar() {
+        return administrar;
+    }
+
+    public void setAdministrar(boolean administrar) {
+        this.administrar = administrar;
+    }
+    
+    
 
 }

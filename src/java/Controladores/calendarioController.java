@@ -21,9 +21,15 @@ import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import org.primefaces.event.ScheduleEntryMoveEvent;
+import org.primefaces.event.ScheduleEntryResizeEvent;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.manhattan.view.data.ScheduleJava8View;
 import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.ScheduleEvent;
@@ -41,7 +47,7 @@ public class calendarioController implements Serializable {
     private LoginController loginController;
     
     private UsuarioDao usuarioDao;
-
+//    @Inject
     CalendarioServicio calendarioServicio = new CalendarioServicio();        
 
     private ScheduleJava8View sj8v;
@@ -140,8 +146,9 @@ public class calendarioController implements Serializable {
     Metodo que se ejecuta justo despues de de instanciar un aclase de calendarioController, esta llena en la lista de objetos de tipo 'Evento'
     todos los eventos asociados con Usuario loggeado, que viene desde loginontroller
     */
-    @PostConstruct
+    //@PostConstruct
     public void getEventosUsuario(){
+        loginController.verificar();
         List<Evento> eventos = calendarioServicio.getEventosUsuario(loginController.getUsuarioLoggeado());
         popularModelo(eventos);
     }
@@ -244,6 +251,29 @@ public class calendarioController implements Serializable {
                 break;
         }
         calendarioServicio.insertAlerta(nuevaAlerta);
+    }
+    
+     public void onEventSelect(SelectEvent<ScheduleEvent> selectEvent) {
+        event = selectEvent.getObject();
+    }
+
+    public void onDateSelect(SelectEvent<LocalDateTime> selectEvent) {
+        event = DefaultScheduleEvent.builder().startDate(selectEvent.getObject()).endDate(selectEvent.getObject().plusHours(1)).build();
+    }
+
+    public void onEventMove(ScheduleEntryMoveEvent event) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved", "Delta:" + event.getDeltaAsDuration());
+
+        addMessage(message);
+    }
+
+    public void onEventResize(ScheduleEntryResizeEvent event) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event resized", "Start-Delta:" + event.getDeltaStartAsDuration() + ", End-Delta: " + event.getDeltaEndAsDuration());
+
+        addMessage(message);
+    }
+    private void addMessage(FacesMessage message) {
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
     
